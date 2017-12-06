@@ -1,0 +1,36 @@
+<style lang="scss">
+</style>
+<template>
+  <text>{{detail}}</text>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  // import Book from '../../api/book'
+  import base from '../../mixins/base'
+  import Http from '../../utils/Http'
+  
+  export default class ShopHome extends wepy.page {
+    def = {
+      init: false,
+      detail: {}
+    }
+    data = {...this.def}
+    onLoad () {
+      this.getBookDetail()
+      this.loaded()
+    }
+    async getBookDetail() {
+      const url = `${wepy.$instance.globalData.baseUrl}/1220562`
+      await Http.get(url, {}).then(data => { this.detail = data })
+      console.log(this.detail)
+    }
+    methods = {}
+    components = {}
+    mixins = [base]
+    config = {
+      navigationBarTitleText: '首页'
+    }
+  }
+</script>
