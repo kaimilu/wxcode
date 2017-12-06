@@ -32,8 +32,10 @@ export default class Http {
     if (wxCode !== 200) {
       return false
     }
+    
     const wxData = res.data
-    return !(wxData && wxData.code !== 0)
+    // console.log(wxCode, (wxData && wxData.code !== 0))
+    return (wxData && wxData.code !== 0)
   }
 
   /**
@@ -51,6 +53,7 @@ export default class Http {
       error.message = serverData.message
       error.serverData = serverData
     }
+    console.log(error)
     return error
   }
   
