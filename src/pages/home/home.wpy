@@ -1,15 +1,14 @@
 <style lang="scss">
 </style>
 <template>
-  <text>{{detail}}</text>
+  <text>{{detail.title}}</text>
 </template>
 
 <script>
   import wepy from 'wepy'
 
-  // import Book from '../../api/book'
+  import Book from '../../api/book'
   import base from '../../mixins/base'
-  import Http from '../../utils/Http'
   
   export default class ShopHome extends wepy.page {
     def = {
@@ -17,15 +16,15 @@
       detail: {}
     }
     data = {...this.def}
-    onLoad () {
-      this.getBookDetail()
+    async onLoad () {
+      this.detail = await Book.getInfo('1220562')
       this.loaded()
     }
-    async getBookDetail() {
-      const url = `${wepy.$instance.globalData.baseUrl}/1220562`
-      await Http.get(url, {}).then(data => { this.detail = data })
-      console.log(this.detail)
-    }
+    // async getBookDetail() {
+    //   const url = `${wepy.$instance.globalData.baseUrl}/1220562`
+    //   await Http.get(url, {}).then(data => { this.detail = data })
+    //   console.log(this.detail)
+    // }
     methods = {}
     components = {}
     mixins = [base]

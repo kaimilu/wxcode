@@ -17,7 +17,7 @@ export default class Http {
     }
     const res = await wepy.request(param)
     if (this.isSuccess(res)) {
-      return res.data.data
+      return res.data
     } else {
       throw this.requestException(res)
     }
@@ -34,7 +34,7 @@ export default class Http {
     }
     
     const wxData = res.data
-    // console.log(wxCode, (wxData && wxData.code !== 0))
+    // console.log(wxData, (wxData && wxData.code !== 0))
     return (wxData && wxData.code !== 0)
   }
 
